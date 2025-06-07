@@ -15,12 +15,13 @@ app.use(express.static("public"));
 app.use(cors())
 
 io.on("connection",function(socket){
-    // console.log("a user connected");
+    console.log("a user connected");
     socket.on("send-location",function(data){
         io.emit("receive-loaction",{
             id:socket.id,
             ...data
         });
+        
     });
     socket.on("disconnect",function(){
         io.emit("user-disconnected",socket.id);
